@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchRandomQuote = async () => {
         try {
-            const res = await fetch('http://192.168.0.104:8443/proxy/3000/quotes/random');
+            const res = await fetch('http://localhost:3010/quotes/random');
             const data = await res.json();
-            if (data && data.text) {
-                quoteText.textContent = data.text;
+            if (data && data[0].text) {
+                quoteText.textContent = data[0].text;
             } else {
                 quoteText.textContent = 'Failed to fetch quote.';
             }

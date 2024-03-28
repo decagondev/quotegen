@@ -1,6 +1,7 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
-const port = 3000;
+const CORS = require('cors');
+const port = 3010;
 
 
 const db = new sqlite3.Database('dev.db');
@@ -28,6 +29,7 @@ db.serialize(() => {
 });
 
 const app = express();
+app.use(CORS());
 
 app.get('/quotes', (req, res) => {
     db.all("SELECT * FROM quotes", (err, rows) => {
